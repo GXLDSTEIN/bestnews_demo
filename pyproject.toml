@@ -1,0 +1,14 @@
+[project]
+name = "bestnews_demo"
+version = ""
+description = ""
+authors = [
+    {name = "gxldstein", email = "gxldstein@tutanota.com"},
+]
+dependencies = [
+    "flask>=3.0.0",
+]
+requires-python = ">=3.11"
+readme = "README.md"
+license = {text = "GPL-3.0-only"}
+
