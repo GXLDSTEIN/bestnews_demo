@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}
-<title>Best news</title>
-{% endblock %}
+{% block title %} Best news {% endblock %}
 
 {% block headline %}
 <h1>World News Hub: Your Voice, Our Headlines!</h1>
@@ -16,7 +14,7 @@
             <h2>Economics</h2>
             {% for news in economic_news %}
             <div class="news-item">
-                <h3>{{ news.title }}</h3>
+                <a href="/post/{{news.news_id}}"><h3>{{ news.title }}</h3></a>
                 <p>{{ news.summary }}</p>
             </div>
             {% endfor %}
@@ -26,7 +24,7 @@
             <h2>IT world</h2>
             {% for news in it_news %}
             <div class="news-item">
-                <h3>{{ news.title }}</h3>
+                <a href="/post/{{news.news_id}}"><h3>{{ news.title }}</h3></a>
                 <p>{{ news.summary }}</p>
             </div>
             {% endfor %}
@@ -36,7 +34,7 @@
             <h2>Entertainment</h2>
             {% for news in entertainment_news %}
             <div class="news-item">
-                <h3>{{ news.title }}</h3>
+                <a href="/post/{{news.news_id}}"><h3>{{ news.title }}</h3></a>
                 <p>{{ news.summary }}</p>
             </div>
             {% endfor %}

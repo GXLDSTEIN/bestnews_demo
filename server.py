@@ -14,5 +14,18 @@ def index():
     )
 
 
+@app.route("/post/<news_id>")
+def post(news_id):
+    news_id = int(news_id)
+    return render_template(
+        "post.html",
+        news_id=news_id,
+        title=data.it_news[news_id]["title"],
+        text=data.it_news[news_id]["text"],
+        author=data.it_news[news_id]["author"],
+        created_at=data.it_news[news_id]["created_at"],
+    )
+
+
 if __name__ == "__main__":
     app.run(debug=True)
