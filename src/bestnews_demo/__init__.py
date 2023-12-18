@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-import data
+from src.bestnews_demo import data
 
 app = Flask(__name__)
 
