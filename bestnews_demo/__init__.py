@@ -29,4 +29,33 @@ def create_app():
         except (IndexError, ValueError):
             return "404"
 
+    @app.route("/posts/<category>")
+    def get_posts_by_category(category):
+        context = get_posts()
+        try:
+            if category == "it_news":
+                posts = context["it_news"]
+                title = "IT News"
+                headline = "Stay Updated on the Latest Tech Trends"
+            elif category == "economic_news":
+                posts = context["economic_news"]
+                title = "Economic News"
+                headline = "Latest News in the Economy"
+            elif category == "entertainment_news":
+                posts = context["entertainment_news"]
+                title = "Entertainment News"
+                headline = "Discover the Latest Entertainment Stories"
+            elif category == "your_news":
+                posts = context["your_news"]
+                title = "Blogs from You"
+                headline = "Latest Stories from Readers"
+            else:
+                return "Invalid category"
+
+            return render_template(
+                "posts_page.html", posts=posts, title=title, headline=headline
+            )
+        except KeyError as e:
+            return f"Error: {e}"
+
     return app
