@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from bestnews_demo import data
+from .data import get_posts
 
 
 def create_app():
@@ -11,6 +12,7 @@ def create_app():
             "economic_news": data.economic_news,
             "it_news": data.it_news,
             "entertainment_news": data.entertainment_news,
+            "your_news": data.your_news,
         }
         return render_template("index.html", **context)
 
