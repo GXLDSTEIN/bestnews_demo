@@ -7,25 +7,25 @@ def create_app():
 
     @app.route("/")
     def index():
-        return render_template(
-            "index.html",
-            economic_news=data.economic_news,
-            it_news=data.it_news,
-            entertainment_news=data.entertainment_news,
-        )
+        context = {
+            "economic_news": data.economic_news,
+            "it_news": data.it_news,
+            "entertainment_news": data.entertainment_news,
+        }
+        return render_template("index.html", **context)
 
     @app.route("/post/<news_id>")
     def post(news_id):
         try:
             news_id = int(news_id)
-            return render_template(
-                "post.html",
-                news_id=news_id,
-                title=data.it_news[news_id]["title"],
-                text=data.it_news[news_id]["text"],
-                author=data.it_news[news_id]["author"],
-                created_at=data.it_news[news_id]["created_at"],
-            )
+            context = {
+                "title": data.it_news[news_id]["title"],
+                "text": data.it_news[news_id]["text"],
+                "author": data.it_news[news_id]["author"],
+                "created_at": data.it_news[news_id]["created_at"],
+            }
+            print(context)
+            return render_template("post.html", **context)
         except (IndexError, ValueError):
             return "404"
 
