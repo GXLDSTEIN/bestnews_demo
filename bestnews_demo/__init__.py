@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, abort
 from bestnews_demo import data
 from .data import get_posts
 
@@ -67,12 +67,12 @@ def create_app():
                 title = "Blogs from You"
                 headline = "Latest Stories from Readers"
             else:
-                return "Invalid category"
+                abort(400, "Invalid category")
 
             return render_template(
                 "posts_page.html", posts=posts, title=title, headline=headline
             )
         except KeyError as e:
-            return f"Error: {e}"
+            abort(400, f"Error: {e}")
 
     return app
