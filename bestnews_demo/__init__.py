@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from bestnews_demo import data
 from .data import get_posts
 
@@ -31,11 +31,26 @@ def create_app():
         except (IndexError, ValueError):
             return "404"
 
-    @app.route("/posts/<category>")
-    def get_posts_by_category(category):
+    @app.route("/all_posts")
+    def all_posts():
         context = get_posts()
+        posts = []
+        for categor, news in context.items():
+            posts.extend(news)
+        title = "All News"
+        headline = "Latest News from all categories"
+        return render_template(
+            "posts_page.html", posts=posts, title=title, headline=headline
+        )
+
+    @app.route("/posts")
+    def get_posts_by_category():
+        context = get_posts()
+        category = request.args.get("category")
         try:
-            if category == "it_news":
+            if category is None or category == "":
+                return all_posts()
+            elif category == "it_news":
                 posts = context["it_news"]
                 title = "IT News"
                 headline = "Stay Updated on the Latest Tech Trends"
