@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, abort
 from bestnews_demo import data
 from .data import get_posts
+from .constants import TITLES, HEADLINES
 
 
 def create_app():
@@ -32,10 +33,10 @@ def create_app():
             return "404"
 
     @app.route("/all_posts")
+    @app.route("/all_posts")
     def all_posts():
-        context = get_posts()
         posts = []
-        for categor, news in context.items():
+        for _, news in get_posts().items():
             posts.extend(news)
         title = "All News"
         headline = "Latest News from all categories"
@@ -45,34 +46,17 @@ def create_app():
 
     @app.route("/posts")
     def get_posts_by_category():
-        context = get_posts()
+        all_news = get_posts()
         category = request.args.get("category")
-        try:
-            if category is None or category == "":
-                return all_posts()
-            elif category == "it_news":
-                posts = context["it_news"]
-                title = "IT News"
-                headline = "Stay Updated on the Latest Tech Trends"
-            elif category == "economic_news":
-                posts = context["economic_news"]
-                title = "Economic News"
-                headline = "Latest News in the Economy"
-            elif category == "entertainment_news":
-                posts = context["entertainment_news"]
-                title = "Entertainment News"
-                headline = "Discover the Latest Entertainment Stories"
-            elif category == "your_news":
-                posts = context["your_news"]
-                title = "Blogs from You"
-                headline = "Latest Stories from Readers"
-            else:
-                abort(400, "Invalid category")
-
-            return render_template(
-                "posts_page.html", posts=posts, title=title, headline=headline
-            )
-        except KeyError as e:
-            abort(400, f"Error: {e}")
+        if category is None or category == "":
+            return all_posts()
+        if category not in TITLES or category not in HEADLINES:
+            abort(404, f"Category '{category}' not found")
+        posts = all_news.get(category, [])
+        title = TITLES.get(category)
+        headline = HEADLINES.get(category)
+        return render_template(
+            "posts_page.html", posts=posts, title=title, headline=headline
+        )
 
     return app
