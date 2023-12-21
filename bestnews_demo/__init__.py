@@ -33,7 +33,6 @@ def create_app():
             return "404"
 
     @app.route("/all_posts")
-    @app.route("/all_posts")
     def all_posts():
         posts = []
         for _, news in get_posts().items():
