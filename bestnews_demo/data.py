@@ -1,4 +1,11 @@
 from datetime import datetime
+from .constants import (
+    IT_NEWS_CATEGORY,
+    ECONOMIC_NEWS_CATEGORY,
+    ENTERTAINMENT_NEWS_CATEGORY,
+    YOUR_NEWS_CATEGORY,
+)
+
 
 economic_news = [
     {
@@ -105,8 +112,8 @@ your_news = [
 
 def get_posts():
     return {
-        "it_news": it_news,
-        "economic_news": economic_news,
-        "entertainment_news": entertainment_news,
-        "your_news": your_news,
+        IT_NEWS_CATEGORY: it_news,
+        ECONOMIC_NEWS_CATEGORY: economic_news,
+        ENTERTAINMENT_NEWS_CATEGORY: entertainment_news,
+        YOUR_NEWS_CATEGORY: your_news,
     }

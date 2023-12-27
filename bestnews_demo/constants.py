@@ -1,3 +1,9 @@
+YOUR_NEWS_CATEGORY = "your_news"
+ENTERTAINMENT_NEWS_CATEGORY = "entertainment_news"
+IT_NEWS_CATEGORY = "it_news"
+ECONOMIC_NEWS_CATEGORY = "economic_news"
+
+
 TITLES = {
     "your_news": "Blogs from You",
     "entertainment_news": "Entertainment News",
