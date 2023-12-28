@@ -1,7 +1,14 @@
 from flask import Flask, render_template, request, abort
 from bestnews_demo import data
 from .data import get_posts
-from .constants import TITLES, HEADLINES
+from .constants import (
+    YOUR_NEWS_CATEGORY,
+    IT_NEWS_CATEGORY,
+    ECONOMIC_NEWS_CATEGORY,
+    ENTERTAINMENT_NEWS_CATEGORY,
+    HEADLINES,
+    TITLES,
+)
 
 
 def create_app():
@@ -10,10 +17,10 @@ def create_app():
     @app.route("/")
     def index():
         context = {
-            "economic_news": data.economic_news,
-            "it_news": data.it_news,
-            "entertainment_news": data.entertainment_news,
-            "your_news": data.your_news,
+            ECONOMIC_NEWS_CATEGORY: data.economic_news,
+            IT_NEWS_CATEGORY: data.it_news,
+            ENTERTAINMENT_NEWS_CATEGORY: data.entertainment_news,
+            YOUR_NEWS_CATEGORY: data.your_news,
         }
         return render_template("index.html", **context)
 
