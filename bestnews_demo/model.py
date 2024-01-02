@@ -14,4 +14,4 @@ class Post(db.Model):
     source = db.Column(db.String, nullable=True)
 
     def __repr__(self):
-        return "<News {} {}".format(self.title, self.created_at)
+        return f"<News {self.title} {self.created_at}>"
