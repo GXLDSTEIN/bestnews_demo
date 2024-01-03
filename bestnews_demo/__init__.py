@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, abort
+from flask_sqlalchemy import SQLAlchemy
 from bestnews_demo import data
 from .data import get_posts
 from .constants import (
@@ -9,10 +10,13 @@ from .constants import (
     HEADLINES,
     TITLES,
 )
+from .model import db
 
 
 def create_app():
     app = Flask(__name__)
+    app.config.from_pyfile("config.py")
+    db.init_app(app)
 
     @app.route("/")
     def index():
