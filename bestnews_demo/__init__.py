@@ -11,7 +11,7 @@ from .constants import (
     HEADLINES,
     TITLES,
 )
-from .model import db
+from .model import db, Post, User
 
 
 def create_app():
