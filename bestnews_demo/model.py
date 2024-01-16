@@ -15,3 +15,14 @@ class Post(db.Model):
 
     def __repr__(self):
         return f"<News {self.title} {self.created_at}>"
+    
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(64), index=True, unique=True)
+    email = db.Column(db.String(50))
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    is_admin = db.Column(db.Boolean, default=False)
+
+    def __repr__(self):
+        return f'<User {self.username}>'

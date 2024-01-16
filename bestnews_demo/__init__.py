@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, abort
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from bestnews_demo import data
 from .data import get_posts
@@ -10,13 +11,14 @@ from .constants import (
     HEADLINES,
     TITLES,
 )
-from .model import db
+from .model import db, Post, User
 
 
 def create_app():
     app = Flask(__name__)
     app.config.from_pyfile("config.py")
     db.init_app(app)
+    migrate = Migrate(app, db)
 
     @app.route("/")
     def index():
