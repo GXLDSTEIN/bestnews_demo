@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request, abort
+from flask import Flask, render_template, request, abort, flash, redirect, url_for
+from flask_login import LoginManager, login_user, logout_user
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from bestnews_demo import data
@@ -11,6 +12,7 @@ from .constants import (
     HEADLINES,
     TITLES,
 )
+from .forms import LoginForm
 from .model import db, Post, User
 
 
@@ -18,6 +20,14 @@ def create_app():
     app = Flask(__name__)
     app.config.from_pyfile("config.py")
     db.init_app(app)
+    login_manager = LoginManager()
+    login_manager.init_app(app)
+    login_manager.login_view = 'login'
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(user_id)
+    
     migrate = Migrate(app, db)
 
     @app.route("/")
@@ -70,5 +80,29 @@ def create_app():
         return render_template(
             "posts_page.html", posts=posts, title=title, headline=headline
         )
-
+    
+    @app.route('/login')
+    def login():
+        title = 'Authorization'
+        login_form = LoginForm()
+        return render_template('login.html', page_title = title, form = login_form)
+    
+    @app.route('/process-login', methods=['POST'])
+    def process_login():
+        form = LoginForm(request.form)
+        if form.validate_on_submit():
+            user = User.query.filter_by(username=form.username.data).first()
+            if user and user.check_password(form.password.data):
+                login_user(user)
+                flash('You are logged in')
+                return redirect(url_for('index'))
+        flash('Incorrect username or password')
+        return redirect(url_for('login'))
+    
+    @app.route('/logout')
+    def logout():
+        logout_user()
+        flash('You are logged out')
+        return redirect(url_for('index'))
+    
     return app
