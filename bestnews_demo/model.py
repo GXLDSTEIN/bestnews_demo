@@ -22,7 +22,7 @@ class Post(db.Model):
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
-    email = db.Column(db.String(50))
+    email = db.Column(db.String(50), unique=True)
     password_hash = db.Column(db.String(128)) 
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     is_admin = db.Column(db.Boolean, default=False)
