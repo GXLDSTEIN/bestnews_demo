@@ -1,11 +1,11 @@
 from datetime import datetime
+
 from .constants import (
-    IT_NEWS_CATEGORY,
     ECONOMIC_NEWS_CATEGORY,
     ENTERTAINMENT_NEWS_CATEGORY,
+    IT_NEWS_CATEGORY,
     YOUR_NEWS_CATEGORY,
 )
-
 
 economic_news = [
     {

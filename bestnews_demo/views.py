@@ -1,22 +1,24 @@
 from flask import (
-    render_template,
-    request,
+    Blueprint,
     abort,
     flash,
     redirect,
+    render_template,
+    request,
     url_for,
-    Blueprint,
 )
+from flask_login import login_user, logout_user
+
+from bestnews_demo import data
+
 from .constants import (
-    YOUR_NEWS_CATEGORY,
-    IT_NEWS_CATEGORY,
     ECONOMIC_NEWS_CATEGORY,
     ENTERTAINMENT_NEWS_CATEGORY,
     HEADLINES,
+    IT_NEWS_CATEGORY,
     TITLES,
+    YOUR_NEWS_CATEGORY,
 )
-from flask_login import login_user, logout_user
-from bestnews_demo import data
 from .data import get_posts
 from .forms import LoginForm
 from .model import User

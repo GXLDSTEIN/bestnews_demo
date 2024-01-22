@@ -1,7 +1,8 @@
-from getpass import getpass
 import sys
+from getpass import getpass
 
 from bestnews_demo import create_app
+
 from .model import User, db
 
 app = create_app()
