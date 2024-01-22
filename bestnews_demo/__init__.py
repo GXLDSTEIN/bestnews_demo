@@ -1,19 +1,7 @@
-from flask import Flask, render_template, request, abort, flash, redirect, url_for
-from flask_login import LoginManager, login_user, logout_user
+from flask import Flask
+from flask_login import LoginManager
 from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
-from bestnews_demo import data
-from .data import get_posts
-from .constants import (
-    YOUR_NEWS_CATEGORY,
-    IT_NEWS_CATEGORY,
-    ECONOMIC_NEWS_CATEGORY,
-    ENTERTAINMENT_NEWS_CATEGORY,
-    HEADLINES,
-    TITLES,
-)
-from .forms import LoginForm
-from .model import db, Post, User
+from .model import db, User
 from .views import views
 
 

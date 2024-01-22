@@ -1,5 +1,4 @@
 from flask import (
-    Flask,
     render_template,
     request,
     abort,
@@ -16,11 +15,11 @@ from .constants import (
     HEADLINES,
     TITLES,
 )
-from flask_login import LoginManager, login_user, logout_user
+from flask_login import login_user, logout_user
 from bestnews_demo import data
 from .data import get_posts
 from .forms import LoginForm
-from .model import db, Post, User
+from .model import User
 
 views = Blueprint("views", __name__)
 
