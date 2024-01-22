@@ -5,15 +5,15 @@ ECONOMIC_NEWS_CATEGORY = "economic_news"
 
 
 TITLES = {
-    "your_news": "Blogs from You",
-    "entertainment_news": "Entertainment News",
-    "it_news": "IT News",
-    "economic_news": "Economic News",
+    YOUR_NEWS_CATEGORY: "Blogs from You",
+    ENTERTAINMENT_NEWS_CATEGORY: "Entertainment News",
+    IT_NEWS_CATEGORY: "IT News",
+    ECONOMIC_NEWS_CATEGORY: "Economic News",
 }
 
 HEADLINES = {
-    "your_news": "Latest Stories from Readers",
-    "entertainment_news": "Discover the Latest Entertainment Stories",
-    "it_news": "Stay Updated on the Latest Tech Trends",
-    "economic_news": "Latest News in the Economy",
+    YOUR_NEWS_CATEGORY: "Latest Stories from Readers",
+    ENTERTAINMENT_NEWS_CATEGORY: "Discover the Latest Entertainment Stories",
+    IT_NEWS_CATEGORY: "Stay Updated on the Latest Tech Trends",
+    ECONOMIC_NEWS_CATEGORY: "Latest News in the Economy",
 }
