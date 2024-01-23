@@ -6,9 +6,9 @@ headline %}
 <ul>
   {% for post in posts %}
   <li>
-    <a href="{{ url_for('post', news_id=news.news_id) }}" target="_blank">
-      ><h6>{{ post.title }}</h6></a
-    >
+    <a href="{{ url_for('views.post', news_id=post.news_id) }}" target="_blank">
+      <h6>{{ post.title }}</h6>
+    </a>
     - {{ post.summary }} {% if post.created_at is defined %} {{
     post.created_at.strftime('%Y-%m-%d') }} {% else %} No date available {%
     endif %}
