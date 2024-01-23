@@ -53,7 +53,6 @@ def post(news_id):
         return "404"
 
 
-@views.route("/all_posts")
 def all_posts():
     posts = []
     for _, news in get_posts().items():
