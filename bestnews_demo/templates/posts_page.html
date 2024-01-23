@@ -6,7 +6,7 @@ headline %}
 <ul>
   {% for post in posts %}
   <li>
-    <a href="/post/{{post.news_id}}" target="_blank"
+    <a href="{{ url_for('post', news_id=news.news_id) }}" target="_blank">
       ><h6>{{ post.title }}</h6></a
     >
     - {{ post.summary }} {% if post.created_at is defined %} {{

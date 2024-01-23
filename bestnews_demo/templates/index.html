@@ -9,9 +9,9 @@ headline %}
       <h2>Economics</h2>
       {% for news in economic_news %}
       <div class="news-item">
-        <a href="/post/{{news.news_id}}" target="_blank"
-          ><h6>{{ news.title }}</h6></a
-        >
+        <a href="{{ url_for('post', news_id=news.news_id) }}" target="_blank">
+          <h6>{{ news.title }}</h6>
+        </a>
         <p>{{ news.summary }}</p>
       </div>
       {% endfor %}
@@ -21,9 +21,9 @@ headline %}
       <h2>IT world</h2>
       {% for news in it_news %}
       <div class="news-item">
-        <a href="/post/{{news.news_id}}" target="_blank"
-          ><h6>{{ news.title }}</h6></a
-        >
+        <a href="{{ url_for('post', news_id=news.news_id) }}" target="_blank">
+          <h6>{{ news.title }}</h6>
+        </a>
         <p>{{ news.summary }}</p>
       </div>
       {% endfor %}
@@ -33,9 +33,9 @@ headline %}
       <h2>Entertainment</h2>
       {% for news in entertainment_news %}
       <div class="news-item">
-        <a href="/post/{{news.news_id}}" target="_blank"
-          ><h6>{{ news.title }}</h6></a
-        >
+        <a href="{{ url_for('post', news_id=news.news_id) }}" target="_blank">
+          <h6>{{ news.title }}</h6>
+        </a>
         <p>{{ news.summary }}</p>
       </div>
       {% endfor %}
@@ -45,9 +45,9 @@ headline %}
       <h2>Your_news</h2>
       {% for news in your_news %}
       <div class="news-item">
-        <a href="/post/{{news.news_id}}" target="_blank"
-          ><h6>{{ news.title }}</h6></a
-        >
+        <a href="{{ url_for('post', news_id=news.news_id) }}" target="_blank">
+          <h6>{{ news.title }}</h6>
+        </a>
         <p>{{ news.summary }}</p>
       </div>
       {% endfor %}
