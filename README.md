@@ -20,6 +20,7 @@ run.bat
 # depends on:
 ```
 alembic
+email-validator
 Flask
 Flask-Login
 Flask-Migrate
