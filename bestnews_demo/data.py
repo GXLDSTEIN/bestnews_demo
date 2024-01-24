@@ -110,7 +110,7 @@ your_news = [
 ]
 
 
-def get_posts():
+def get_posts_db():
     return {
         IT_NEWS_CATEGORY: it_news,
         ECONOMIC_NEWS_CATEGORY: economic_news,

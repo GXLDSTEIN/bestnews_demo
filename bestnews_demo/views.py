@@ -19,7 +19,7 @@ from .constants import (
     TITLES,
     YOUR_NEWS_CATEGORY,
 )
-from .data import get_posts
+from .data import get_posts_db
 from .forms import LoginForm
 from .model import User
 
@@ -55,7 +55,7 @@ def post(news_id):
 
 def all_posts():
     posts = []
-    for _, news in get_posts().items():
+    for _, news in get_posts_db().items():
         posts.extend(news)
     title = "All News"
     headline = "Latest News from all categories"
@@ -65,8 +65,8 @@ def all_posts():
 
 
 @views.route("/posts")
-def get_posts_by_category():
-    all_news = get_posts()
+def get_posts():
+    all_news = get_posts_db()
     category = request.args.get("category")
     if category is None or category == "":
         return all_posts()
