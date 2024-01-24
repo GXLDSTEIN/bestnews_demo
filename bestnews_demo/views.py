@@ -95,13 +95,13 @@ def process_login():
         if user and user.check_password(form.password.data):
             login_user(user)
             flash("You are logged in")
-            return redirect(url_for("index"))
+            return redirect(url_for("views.index"))
     flash("Incorrect username or password")
-    return redirect(url_for("login"))
+    return redirect(url_for("views.login"))
 
 
 @views.route("/logout")
 def logout():
     logout_user()
     flash("You are logged out")
-    return redirect(url_for("index"))
+    return redirect(url_for("views.index"))
