@@ -12,7 +12,7 @@ headline %}
         {% endfor %}
       </div>
       {% endif %} {% endwith %}
-      <form action="{{ url_for('process_login')}}" method="post">
+      <form action="{{ url_for('views.process_login')}}" method="post">
         {{ form.hidden_tag() }}
         <div class="form-group">
           {{ form.username.label }}<br />

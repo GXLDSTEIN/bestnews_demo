@@ -31,25 +31,25 @@
         <a class="navbar-brand active" href="{{ url_for('views.index') }}">Main</a>
         <a
           class="navbar-brand"
-          href="{{ url_for('views.get_posts_by_category') }}?category=economic_news"
+          href="{{ url_for('views.get_posts') }}?category=economic_news"
           >Economics</a
         >
         <a
           class="navbar-brand"
-          href="{{ url_for('views.get_posts_by_category') }}?category=it_news"
+          href="{{ url_for('views.get_posts') }}?category=it_news"
           >It world</a
         >
         <a
           class="navbar-brand"
-          href="{{ url_for('views.get_posts_by_category') }}?category=entertainment_news"
+          href="{{ url_for('views.get_posts') }}?category=entertainment_news"
           >Entertainment</a
         >
         <a
           class="navbar-brand"
-          href="{{ url_for('views.get_posts_by_category') }}?category=your_news"
+          href="{{ url_for('views.get_posts') }}?category=your_news"
           >Your news</a
         >
-        <a class="navbar-brand" href="{{ url_for('views.all_posts') }}">All Posts</a>
+        <a class="navbar-brand" href="{{ url_for('views.get_posts') }}">All Posts</a>
         <!-- Form of search -->
         <form class="form-inline mr-sm-2">
           <input
