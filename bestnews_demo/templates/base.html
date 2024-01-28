@@ -28,7 +28,9 @@
     >
       <!-- Navigation Bar -->
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand active" href="{{ url_for('views.index') }}">Main</a>
+        <a class="navbar-brand active" href="{{ url_for('views.index') }}"
+          >Main</a
+        >
         <a
           class="navbar-brand"
           href="{{ url_for('views.get_posts') }}?category=economic_news"
@@ -49,7 +51,9 @@
           href="{{ url_for('views.get_posts') }}?category=your_news"
           >Your news</a
         >
-        <a class="navbar-brand" href="{{ url_for('views.get_posts') }}">All Posts</a>
+        <a class="navbar-brand" href="{{ url_for('views.get_posts') }}"
+          >All Posts</a
+        >
         <!-- Form of search -->
         <form class="form-inline mr-sm-2">
           <input
@@ -58,27 +62,45 @@
             placeholder="Search"
             aria-label="Search"
           />
-
           <button type="button" class="btn btn-dark">Search</button>
         </form>
-        <a class="navbar-brand ml-auto" href="#"
-          ><img
-            src="../static/user-profile.png"
-            alt="Personal Account"
-            style="width: 20px; height: 20px"
-        /></a>
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <div class="dropdown ml-auto">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            id="userDropdown"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <img
+              src="../static/user-profile.png"
+              alt="Personal Account"
+              style="width: 20px; height: 20px"
+            />
+          </a>
+          <div
+            class="dropdown-menu dropdown-menu-right"
+            aria-labelledby="userDropdown"
+          >
+            <a class="dropdown-item">Your Profile</a>
+            <div class="dropdown-divider"></div>
+            {% if current_user.is_authenticated %}
+            <a class="dropdown-item" href="{{ url_for('views.logout') }}"
+              >Logout</a
+            >
+            {% else %}
+            <a class="dropdown-item" href="{{ url_for('views.login') }}"
+              >Login</a
+            >
+            <a class="dropdown-item" href="{{ url_for('views.register') }}"
+              >Register</a
+            >
+            {% endif %}
+          </div>
+        </div>
       </nav>
 
       {% block body %} {% endblock %}
