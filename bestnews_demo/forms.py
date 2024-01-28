@@ -34,13 +34,13 @@ class RegistrationForm(FlaskForm):
     password2 = PasswordField('Repeate Password', validators=[DataRequired(), EqualTo('password')], render_kw={"class": "form-control"})
     submit = SubmitField("Send", render_kw={"class": "btn btn-primary"})
     def validate_username(self, username):
-        users_count = User.query.filter_by(username=username.data).first()
-        if users_count:
+        existing_user = User.query.filter_by(username=username.data).first()
+        if existing_user:
             raise ValidationError('The user with this name is already registered.')
 
     def validate_email(self, email):
-        users_count = User.query.filter_by(email=email.data).first()
-        if users_count:
+        existing_user = User.query.filter_by(email=email.data).first()
+        if existing_user:
             raise ValidationError(
                 'The user with this email is already registered.'
             )
