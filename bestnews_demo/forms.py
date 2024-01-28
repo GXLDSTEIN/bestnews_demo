@@ -35,12 +35,12 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField("Send", render_kw={"class": "btn btn-primary"})
     def validate_username(self, username):
         users_count = User.query.filter_by(username=username.data).first()
-        if users_count > 0:
+        if users_count:
             raise ValidationError('The user with this name is already registered.')
 
     def validate_email(self, email):
-        users_count = User.query.filter_by(email=email.data).count()
-        if users_count > 0:
+        users_count = User.query.filter_by(email=email.data).first()
+        if users_count:
             raise ValidationError(
                 'The user with this email is already registered.'
             )
