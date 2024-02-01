@@ -1,10 +1,9 @@
-{% extends "base.html" %}
-
-{% block title %} bestnews: {{ title }} {% endblock %}
-
+{% extends "base.html" %} {% block title %} bestnews: {{ title }} {% endblock %}
 {% block body %}
-    <h1>{{ title }}</h1>
-    <p>{{ text }}</p>
-    <p>author: {{ author }}</p>
-    <p>created at: {{ created_at}}</p>
+<div class="article-container">
+  <h1>{{ title }}</h1>
+  <p>{{ text }}</p>
+  <p>author: {{ author }}</p>
+  <p>created at: {{ created_at.strftime("%Y-%m-%d") }}</p>
+</div>
 {% endblock %}

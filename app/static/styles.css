@@ -1,21 +1,21 @@
 /* styles.css */
 
 h1 {
-    color: rgb(59, 59, 59);
+    color: rgb(249, 245, 245);
     font-size: 60px;
     text-align: center;
     
 }
 
 h2 {
-    color: rgb(59, 59, 59);
+    color: rgba(240, 234, 234, 0.04);
     font-size: 40px;
     text-align: left;
     
 }
 
 h3 {
-    color: rgb(59, 59, 59);
+    color: rgb(251, 247, 247);
     font-size: 40px;
     text-align: center;
     
@@ -41,10 +41,109 @@ h4 {
     font-size: 18px;
     color: #333;
     
-  }
-  
-  .news-item p {
+}
+
+.news-item p {
     font-size: 14px;
     color: #666;
     
-  }
+}
+
+
+body {
+    background-image: url('/static/background_photo.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.news-item {
+    background-color: rgba(255, 255, 255, 1); 
+    padding: 10px; 
+    margin-bottom: 10px; 
+    border-radius: 5px; 
+}
+
+.news-item a {
+    color: white;
+    text-decoration: none; 
+}
+
+.col-md-4 {
+    margin-top: 20px; 
+}
+
+h2 {
+    background-color: rgba(150, 150, 150, 0.5); /
+    padding: 10px; 
+    margin-bottom: 10px; 
+    border-radius: 5px; 
+    color: white;
+}
+
+.navbar-brand, .navbar-brand:hover {
+    color: #343a40 !important; 
+}
+
+.article-container {
+    background-color: white; 
+    color: #343a40;
+    max-width: 800px; 
+    margin: 20px auto 0; 
+    padding: 20px; 
+    font-family: "Helvetica", Arial, sans-serif;
+}
+
+.article-container h1 {
+    font-size: 36px;
+    color: #343a40;
+}
+
+
+.author-info {
+    font-weight: bold; 
+}
+
+
+.news-container {
+    background-color: rgba(255, 255, 255, 0.9); 
+    padding: 20px; 
+    margin: 20px auto; 
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+.news-category-title {
+    color: #333;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.news-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.news-item {
+    background-color: rgba(200, 200, 200, 0.5);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.news-item-title {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.news-author {
+    font-size: 14px;
+    color: #666;
+}
+
+.news-item a {
+    color: white;
+    text-decoration: none;
+}
