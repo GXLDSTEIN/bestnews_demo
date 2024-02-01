@@ -9,7 +9,7 @@ from flask import (
 )
 from flask_login import login_user, logout_user, current_user
 
-from bestnews_demo import data, db
+from app import data, db
 
 from .constants import (
     ECONOMIC_NEWS_CATEGORY,
