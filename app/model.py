@@ -15,6 +15,7 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     author = db.Column(db.String, nullable=False)
     source = db.Column(db.String, nullable=True)
+    category = db.Column(db.String, nullable=True)
 
     def __repr__(self):
         return f"<News {self.title} {self.created_at}>"
