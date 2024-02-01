@@ -18,42 +18,47 @@ def get_githubblog_snippets():
     url = 'https://techcrunch.com/category/startups/'
     html = get_html(url)
 
-    if html:
-        soup = BeautifulSoup(html, 'html.parser')
-        all_posts = soup.find_all('a', class_='post-block__title__link')
+    if not html:
+        print("HTML не получен.")
+        return
 
-        for post_link in all_posts:
-            title = post_link.text.strip()
-            source = post_link['href']
+    
+    soup = BeautifulSoup(html, 'html.parser')
+    all_posts = soup.find_all('a', class_='post-block__title__link')
 
-            post_html = get_html(source)
+    for post_link in all_posts:
+        title = post_link.text.strip()
+        source = post_link['href']
 
-            if post_html:
-                post_soup = BeautifulSoup(post_html, 'html.parser')
-                text_element = post_soup.find('div', class_='article-content')  
-                text = text_element.text.strip() if text_element else "No text available"
-                
-                byline_wrapper_element = post_soup.find('div', class_='article__byline-wrapper')
-                if byline_wrapper_element:
-                    byline_element = byline_wrapper_element.find('div', class_='article__byline')
-                    if byline_element:
-                        author_element = byline_element.find('a', href=True)
-                        author = author_element.text.strip() if author_element else "No author available"
+        post_html = get_html(source)
 
-                        # Извлекаем дату из URL
-                        created_at = extract_date_from_url(source)
-                        category = "it_news"
+        if not post_html:
+            print(f"HTML для поста {title} не получен.")
+            continue
 
-                    else:
-                        author = "No author available"
-                        created_at = "No date available"
-                else:
-                    author = "No author available"
-                    created_at = "No date available"
+        post_soup = BeautifulSoup(post_html, 'html.parser')
+        text_element = post_soup.find('div', class_='article-content')  
+        text = text_element.text.strip() if text_element else "No text available"
+        
+        byline_wrapper_element = post_soup.find('div', class_='article__byline-wrapper')
+        if byline_wrapper_element:
+            byline_element = byline_wrapper_element.find('div', class_='article__byline')
+            if byline_element:
+                author_element = byline_element.find('a', href=True)
+                author = author_element.text.strip() if author_element else "No author available"
 
-                save_post(title, text, created_at, author, source, category=category)
-    else:
-        print("HTML is not received.")
+                # Извлекаем дату из URL
+                created_at = extract_date_from_url(source)
+                category = "it_news"
+
+            else:
+                author = "No author available"
+                created_at = "No date available"
+        else:
+            author = "No author available"
+            created_at = "No date available"
+
+        save_post(title, text, created_at, author, source, category=category)
 
 
 if __name__ == "__main__":
