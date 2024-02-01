@@ -1,1 +1,1 @@
-set FLASK_APP=bestnews_demo && set FLASK_ENV=development && set FLASK_DEBUG=1 && flask run
+set FLASK_APP=app && set FLASK_ENV=development && set FLASK_DEBUG=1 && flask run
