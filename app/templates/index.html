@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block title %} Best news {% endblock %} {% block
+headline %}
+<h1>World News Hub: Your Voice, Our Headlines!</h1>
+{% endblock %} {% block body %}
+<div class="container-fluid">
+  {% with messages = get_flashed_messages() %} {% if messages %}
+  <div class="alert alert-info" role="alert">
+    {% for message in messages %} {{ message }}<br />
+    {% endfor %}
+  </div>
+  {% endif %} {% endwith %}
+
+  <div class="row">
+    {% for category, category_posts in posts.items() %}
+    <div class="col-md-4 mt-5 mb-5 mr-4 ml-4">
+      <h2>{{ titles[category] }}</h2>
+      {% for post in category_posts[:5] %}
+      <div class="news-item">
+        <a href="{{ url_for('views.post', news_id=post.id) }}" target="_blank">
+          <h6>{{ post.title }}</h6>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% block title %} {{ title }} {% endblock %} {% block
+headline %}
+<h3 class="news-headline">{{ headline }}</h3>
+{% endblock %} {% block body %}
+<div class="news-container">
+  <h4 class="news-category-title">Latest News: {{ title }}</h4>
+  <ul class="news-list">
+    {% for post in posts %}
+    <li class="news-item">
+      <a href="{{ url_for('views.post', news_id=post.id) }}" target="_blank">
+        <h6 class="news-item-title">{{ post.title }}</h6>
+      </a>
+      {% if post.created_at is defined %} {{
+      post.created_at.strftime('%Y-%m-%d') }} {% else %} No date available {%
+      endif %} {% if post.author %}
+      <br /><span class="news-author">Author: {{ post.author }}</span>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

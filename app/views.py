@@ -9,8 +9,7 @@ from flask import (
 )
 from flask_login import login_user, logout_user, current_user
 
-from bestnews_demo import data, db
-
+from app import data, db
 from .constants import (
     ECONOMIC_NEWS_CATEGORY,
     ENTERTAINMENT_NEWS_CATEGORY,
@@ -21,43 +20,56 @@ from .constants import (
 )
 from .data import get_posts_db
 from .forms import LoginForm, RegistrationForm
-from .model import User
+from .model import User, Post
+
+from datetime import datetime
+
+from .constants import (
+    ECONOMIC_NEWS_CATEGORY,
+    ENTERTAINMENT_NEWS_CATEGORY,
+    IT_NEWS_CATEGORY,
+    YOUR_NEWS_CATEGORY,
+)
 
 views = Blueprint("views", __name__)
 
 
 @views.route("/")
 def index():
-    context = {
-        ECONOMIC_NEWS_CATEGORY: data.economic_news,
-        IT_NEWS_CATEGORY: data.it_news,
-        ENTERTAINMENT_NEWS_CATEGORY: data.entertainment_news,
-        YOUR_NEWS_CATEGORY: data.your_news,
-    }
+    categories = [
+        ECONOMIC_NEWS_CATEGORY,
+        IT_NEWS_CATEGORY,
+        ENTERTAINMENT_NEWS_CATEGORY,
+        YOUR_NEWS_CATEGORY,
+    ]
+    
+    posts = {category.lower(): Post.query.filter_by(category=category).all() for category in categories}
+    titles = TITLES
     flash_messages = get_flashed_messages()
-    return render_template("index.html", flash_messages=flash_messages, **context)
-
+    return render_template("index.html", flash_messages=flash_messages, posts=posts, titles=titles)
 
 @views.route("/post/<news_id>")
 def post(news_id):
     try:
         news_id = int(news_id)
-        context = {
-            "title": data.it_news[news_id]["title"],
-            "text": data.it_news[news_id]["text"],
-            "author": data.it_news[news_id]["author"],
-            "created_at": data.it_news[news_id]["created_at"],
-        }
-        print(context)
-        return render_template("post.html", **context)
-    except (IndexError, ValueError):
+        post = Post.query.get(news_id)
+        if post:
+            context = {
+                "title": post.title,
+                "text": post.text,
+                "author": post.author,
+                "created_at": post.created_at,
+            }
+            print(context)
+            return render_template("post.html", **context)
+        else:
+            return "404"
+    except (ValueError, TypeError):
         return "404"
 
 
 def all_posts():
-    posts = []
-    for _, news in get_posts_db().items():
-        posts.extend(news)
+    posts = Post.query.all()
     title = "All News"
     headline = "Latest News from all categories"
     return render_template(
@@ -73,7 +85,7 @@ def get_posts():
         return all_posts()
     if category not in TITLES or category not in HEADLINES:
         abort(404, f"Category '{category}' not found")
-    posts = all_news.get(category, [])
+    posts = Post.query.filter_by(category=category).all()
     title = TITLES.get(category)
     headline = HEADLINES.get(category)
     return render_template(
